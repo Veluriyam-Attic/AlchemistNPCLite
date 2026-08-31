@@ -912,6 +912,8 @@ namespace AlchemistNPCLite.NPCs
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Summoning.APMC>(), 1));
         }
 
+        internal static Dictionary<string, List<(Mod source,string name, int price, Condition[] conditions)>> ModCall_AddItem = new();
+
         public override void AddShops()
         {
             ModLoader.TryGetMod("CalamityMod", out Mod Calamity);
@@ -1032,6 +1034,14 @@ namespace AlchemistNPCLite.NPCs
             #region Catalyst
             .AddModItemToShop(Catalyst, "MetanovaOre", Item.buyPrice(0, 2, 0, 0), () => CatalystDown.Astrageldon);
             #endregion
+
+            {
+                // Mod Call Items
+                if (ModCall_AddItem.TryGetValue(ModMaterialShop, out var groups))
+                    foreach (var group in groups)
+                        shop.AddModItemToShop(group.source, group.name, group.price, group.conditions);
+            }
+
             ShopPaginator.Register(shop); // Gregg: paginate instead of Register() — overflow past 39 no longer dropped
             #endregion
 
@@ -1115,6 +1125,13 @@ namespace AlchemistNPCLite.NPCs
                 ;
             shop.Register();
             #endregion
+
+            {
+                // Mod Call Items
+                if (ModCall_AddItem.TryGetValue(Bags1Shop, out var groups))
+                    foreach (var group in groups)
+                        shop.AddModItemToShop(group.source, group.name, group.price, group.conditions);
+            }
             #endregion
 
             #region Bags 2 Shop - Fargo & Thorium & Ancient Awaken
@@ -1148,6 +1165,13 @@ namespace AlchemistNPCLite.NPCs
             .AddModItemToShop(AAMod, "MonarchTreasureBag", Item.buyPrice(4,0,0,0), () => AADown.Monarch)
             #endregion
                 ;
+
+            {
+                // Mod Call Items
+                if (ModCall_AddItem.TryGetValue(Bags2Shop, out var groups))
+                    foreach (var group in groups)
+                        shop.AddModItemToShop(group.source, group.name, group.price, group.conditions);
+            }
             shop.Register();
             #endregion
 
@@ -1167,6 +1191,13 @@ namespace AlchemistNPCLite.NPCs
                 .AddModItemToShop(Redemption, "AkkaBag", 6000000, () => RedemptionDowned.DeityDuo)
                 .AddModItemToShop(Redemption, "NebBag", 10000000, () => RedemptionDowned.Nebuleus)
                 ;
+
+            {
+                // Mod Call Items
+                if (ModCall_AddItem.TryGetValue(Bags3Shop, out var groups))
+                    foreach (var group in groups)
+                        shop.AddModItemToShop(group.source, group.name, group.price, group.conditions);
+            }
             shop.Register();
             #endregion
 
@@ -1184,6 +1215,8 @@ namespace AlchemistNPCLite.NPCs
             }
             customShop.Register();
             #endregion
+
+            ModCall_AddItem.Clear();
         }
     }
 }

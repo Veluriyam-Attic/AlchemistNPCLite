@@ -1,5 +1,7 @@
 ﻿using AlchemistNPCLite.Interface;
 using AlchemistNPCLite.Items;
+using Mono.Cecil;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -149,6 +151,34 @@ namespace AlchemistNPCLite
             SpawnTravelMerchant,
             SpawnYoungBrewer,
             WorldControl
+        }
+
+        public override object Call(params object[] args)
+        {
+            if (args[0] is not string)
+                return AlchemistNPCModCall.failed;
+
+            switch (args[0])
+            {
+                case "Add Item To Operator":
+                    {
+                        if (args[1] is not string || args[2] is not Mod || args[3] is not string || args[4] is not int || args[5] is not Condition[])
+                            return AlchemistNPCModCall.failed;
+
+                        string shop = args[1] as string;
+                        Mod source = args[2] as Mod;
+                        string name = args[3] as string;
+                        int price = Convert.ToInt32(args[4]);
+                        Condition[] conditions = args[5] as Condition[];
+
+                        if (source == null || name == null || conditions == null)
+                            return AlchemistNPCModCall.failed;
+
+                        return AlchemistNPCModCall.AddItemToOperator(shop, source, name, price, conditions);
+                    }
+
+                default: return AlchemistNPCModCall.failed;
+            }
         }
     }
 }
