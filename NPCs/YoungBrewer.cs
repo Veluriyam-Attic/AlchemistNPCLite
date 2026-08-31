@@ -219,7 +219,7 @@ namespace AlchemistNPCLite.NPCs
 
             var shop = new NPCShop(Type, Shop1)
                 .AddModItemToShop<VanTankCombination>(90000)
-                .AddModItemToShop<TankCombination>(160000, () => Main.hardMode)
+                .AddModItemToShop<TankCombination>(160000, Condition.Hardmode)
                 .AddModItemToShop<BattleCombination>(120000)
                 .AddModItemToShop<RangerCombination>(75000)
                 .AddModItemToShop<MageCombination>(90000)
@@ -227,8 +227,8 @@ namespace AlchemistNPCLite.NPCs
                 .AddModItemToShop<ExplorerCombination>(80000)
                 .AddModItemToShop<SummonerCombination>(30000)
                 .AddModItemToShop<FishingCombination>(100000)
-                .AddModItemToShop<ThoriumCombination>(250000, () => NPC.downedMechBossAny && ThoriumMod != null)
-                .AddModItemToShop<CalamityCombination>(200000, () => Main.hardMode && Calamity != null)
+                .AddModItemToShop<ThoriumCombination>(250000, Condition.DownedMechBossAny, new Condition("Mods.AlchemistNPCLite.Conditions.Thorium.EnableThorium", () => ThoriumMod != null))
+                .AddModItemToShop<CalamityCombination>(200000, Condition.Hardmode, new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.EnableCalamity", () => Calamity != null))
             // IMPLEMENT WHEN WEAKREFERENCES FIXED
             /*
             if (ModLoader.GetMod("MorePotions") != null)
@@ -241,13 +241,13 @@ namespace AlchemistNPCLite.NPCs
                 }
             }
             */
-                .AddModItemToShop<SpiritCombination>(250000, () => NPC.downedMechBossAny && SpiritMod != null)
-                .AddModItemToShop<UniversalCombination>(500000, () => NPC.downedMoonlord)
-                .AddModItemToShop(ThoriumMod, "FrostCoatingItem", 5000, () => NPC.downedBoss3)
-                .AddModItemToShop(ThoriumMod, "ToxicCoatingItem", 2500, () => NPC.downedBoss3)
-                .AddModItemToShop(ThoriumMod, "GasContainer", 200, () => Main.hardMode)
-                .AddModItemToShop(ThoriumMod, "AphrodisiacVial", 250, () => Main.hardMode)
-                .AddModItemToShop(ThoriumMod, "PlasmaVial", 350, () => Main.hardMode && NPC.downedPlantBoss);
+                .AddModItemToShop<SpiritCombination>(250000, Condition.DownedMechBossAny,new Condition("Mods.AlchemistNPCLite.Conditions.Spirit.EnableSpirit",() => SpiritMod != null))
+                .AddModItemToShop<UniversalCombination>(500000, Condition.DownedMoonLord)
+                .AddModItemToShop(ThoriumMod, "FrostCoatingItem", 5000, Condition.DownedSkeletron)
+                .AddModItemToShop(ThoriumMod, "ToxicCoatingItem", 2500, Condition.DownedSkeletron)
+                .AddModItemToShop(ThoriumMod, "GasContainer", 200, Condition.Hardmode)
+                .AddModItemToShop(ThoriumMod, "AphrodisiacVial", 250, Condition.Hardmode)
+                .AddModItemToShop(ThoriumMod, "PlasmaVial", 350, Condition.Hardmode , Condition.DownedPlantera);
             shop.Register();
 
             shop = new NPCShop(Type, Shop2)
@@ -266,9 +266,9 @@ namespace AlchemistNPCLite.NPCs
                     Condition.Hardmode)
 
                 .Add(new Item(ItemID.FlaskofVenom) { shopCustomPrice = 30000 },
-                    new Condition("", () => NPC.downedPlantBoss))
+                    Condition.DownedPlantera)
                 .Add(new Item(ItemID.FlaskofNanites) { shopCustomPrice = 30000 },
-                    new Condition("", () => NPC.downedPlantBoss))
+                    Condition.DownedPlantera)
             // IMPLEMENT WHEN WEAKREFERENCES FIXED
             /*
             if (ModLoader.GetMod("AAMod") != null)
@@ -280,9 +280,9 @@ namespace AlchemistNPCLite.NPCs
                 }
             }
             */
-                .AddModItemToShop(SpiritMod, "AcidVial", 30000, () => Main.hardMode)
-				.AddModItemToShop(Calamity, "FlaskOfBrimstone", 40000, () => (bool)Calamity.Call("Downed", "calamitas doppelganger"))
-				.AddModItemToShop(Calamity, "FlaskOfHolyFlames", 50000, () => NPC.downedMoonlord);
+                .AddModItemToShop(SpiritMod, "AcidVial", 30000, Condition.Hardmode)
+				.AddModItemToShop(Calamity, "FlaskOfBrimstone", 40000, new Condition("Mods.CalamityMod.Condition.DownedCal", () => (bool)Calamity.Call("Downed", "calamitas doppelganger")))
+				.AddModItemToShop(Calamity, "FlaskOfHolyFlames", 50000, Condition.DownedMoonLord);
             shop.Register();
         }
     }

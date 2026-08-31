@@ -320,8 +320,8 @@ namespace AlchemistNPCLite.NPCs
                     Condition.Hardmode)
                 .Add(new Item(ItemID.SuperHealingPotion) { shopCustomPrice = 25000 },
                     Condition.DownedMoonLord)
-                .AddModItemToShop(Calamity, "SupremeHealingPotion", 500000, () => (bool)Calamity.Call("Downed", "providence") && !(bool)Calamity.Call("Downed", "dog"))
-                .AddModItemToShop(Calamity, "OmegaHealingPotion", 1000000, () => (bool)Calamity.Call("Downed", "dog"))
+                .AddModItemToShop(Calamity, "SupremeHealingPotion", 500000, new Condition("Mods.CalamityMod.Condition.Drops.DownedProv", () => (bool)Calamity.Call("Downed", "providence") && !(bool)Calamity.Call("Downed", "dog")))
+                .AddModItemToShop(Calamity, "OmegaHealingPotion", 1000000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")))
                 .Add(new Item(ItemID.LesserManaPotion) { shopCustomPrice = 500 },
                     Condition.NotDownedEowOrBoc)
                 .Add(new Item(ItemID.ManaPotion) { shopCustomPrice = 1000 },
@@ -342,13 +342,13 @@ namespace AlchemistNPCLite.NPCs
                 .AddModItemToShop(imkSushisMod, "BaseSummoningPotion", 2500)
                 .AddModItemToShop(imkSushisMod, "AnglerAmnesiaPotion", 25000)
                 .AddModItemToShop(imkSushisMod, "ResurrectionPotion", 25000)
-                .AddModItemToShop(imkSushisMod, "MeteoritePotion", 250000, () => NPC.downedBoss2)
-                .AddModItemToShop<BeachTeleporterPotion>(20000, () => NPC.downedBoss2)
-                .AddModItemToShop<JungleTeleporterPotion>(50000, () => NPC.downedBoss2)
-                .AddModItemToShop<OceanTeleporterPotion>(20000, () => NPC.downedBoss3)
-                .AddModItemToShop<DungeonTeleportationPotion>(25000, () => NPC.downedBoss3)
-                .AddModItemToShop<UnderworldTeleportationPotion>(50000, () => Main.hardMode)
-                .AddModItemToShop<TempleTeleportationPotion>(100000, () => NPC.downedPlantBoss)
+                .AddModItemToShop(imkSushisMod, "MeteoritePotion", 250000,Condition.DownedEowOrBoc)
+                .AddModItemToShop<BeachTeleporterPotion>(20000, Condition.DownedEowOrBoc)
+                .AddModItemToShop<JungleTeleporterPotion>(50000, Condition.DownedEowOrBoc)
+                .AddModItemToShop<OceanTeleporterPotion>(20000, Condition.DownedSkeletron)
+                .AddModItemToShop<DungeonTeleportationPotion>(25000, Condition.DownedSkeletron)
+                .AddModItemToShop<UnderworldTeleportationPotion>(50000, Condition.Hardmode)
+                .AddModItemToShop<TempleTeleportationPotion>(100000, Condition.DownedPlantera)
                 .Add(new Item(ItemID.Bottle) { shopCustomPrice = 100 })
                 .Add(new Item(ItemID.BottledWater) { shopCustomPrice = 500 })
                 .Add(ItemID.FallenStar, Condition.DownedEowOrBoc)
@@ -397,7 +397,7 @@ namespace AlchemistNPCLite.NPCs
                     Condition.DownedEowOrBoc)
                 .Add(new Item(ItemID.ViciousMushroom) { shopCustomPrice = 1000 },
                     Condition.DownedEowOrBoc)
-                .AddModItemToShop(Redemption, "Nightshade", 1000, () => NPC.downedBoss3);
+                .AddModItemToShop(Redemption, "Nightshade", 1000, Condition.DownedSkeletron);
             // Gregg: PlantShop paginated too (register happens after the dead Tremor block below)
             /*
             if (ModLoader.GetMod("Tremor") != null)

@@ -338,7 +338,7 @@ namespace AlchemistNPCLite.NPCs
 		public override void AddShops()
         {
 			var shop = new NPCShop(Type, Sh1)
-				.Add(new Item(576), new Condition("", () => !NPC.downedMechBossAny))
+				.Add(new Item(576), Condition.NotDownedMechBossAny)
 				.Add(new Item(562) { shopCustomPrice = 100000 }, Condition.Hardmode)
 				.Add(new Item(1600) { shopCustomPrice = 100000 }, Condition.Hardmode)
 				.Add(new Item(564) { shopCustomPrice = 100000 }, Condition.Hardmode)
@@ -439,81 +439,92 @@ namespace AlchemistNPCLite.NPCs
 				.Add(new Item(5036) { shopCustomPrice = 100000 }, Condition.DownedMoonLord)
 				.Add(new Item(5037) { shopCustomPrice = 100000 }, Condition.Hardmode);
 			shop.Register();
-			
-			ModLoader.TryGetMod("CalamityMod", out Mod Calamity);
-			ModLoader.TryGetMod("CalamityModMusic", out Mod CalamityMM);
+
+            bool CalamityLoaded = ModLoader.TryGetMod("CalamityMod", out Mod Calamity);
+            ModLoader.TryGetMod("CalamityModMusic", out Mod CalamityMM);
             ModLoader.TryGetMod("ThoriumMod", out Mod ThoriumMod);
-			
-			shop = new NPCShop(Type, Sh4)
-				.AddModItemToShop(CalamityMM, "CalamityTitleMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AbyssLayer1MusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AbyssLayer2MusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AbyssLayer3MusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AbyssLayer4MusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AcidRainTier1MusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AcidRainTier3MusicBox", 100000, Condition.DownedMoonLord)
-				.AddModItemToShop(CalamityMM, "AnahitasLureMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AnahitaMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AquaticScourgeMusicBox", 100000, () => (bool)Calamity.Call("Downed", "aquatic scourge"))
-				.AddModItemToShop(CalamityMM, "AstralInfectionMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AstralInfectionUndergroundMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "AstrumAureusMusicBox", 100000, () => (bool)Calamity.Call("Downed", "astrum aureus"))
-				.AddModItemToShop(CalamityMM, "AstrumDeusMusicBox", 100000, () => (bool)Calamity.Call("Downed", "astrum deus"))
-				.AddModItemToShop(CalamityMM, "BioLabMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "BossRushTier1MusicBox", 100000, () => (bool)Calamity.Call("Downed", "supremecalamitas"))
-				.AddModItemToShop(CalamityMM, "BossRushTier2MusicBox", 100000, () => (bool)Calamity.Call("Downed", "supremecalamitas"))
-				.AddModItemToShop(CalamityMM, "BossRushTier3MusicBox", 100000, () => (bool)Calamity.Call("Downed", "supremecalamitas"))
-				.AddModItemToShop(CalamityMM, "BrimstoneCragsMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "BrimstoneElementalMusicBox", 100000, () => (bool)Calamity.Call("Downed", "brimstone elemental"))
-				.AddModItemToShop(CalamityMM, "CalamitasCloneMusicBox", 100000, () => (bool)Calamity.Call("Downed", "calamitas doppelganger"))
-				.AddModItemToShop(CalamityMM, "CalamitasPhase1MusicBox", 250000, () => (bool)Calamity.Call("Downed", "supremecalamitas"))
-				.AddModItemToShop(CalamityMM, "CalamitasPhase2MusicBox", 250000, () => (bool)Calamity.Call("Downed", "supremecalamitas"))
-				.AddModItemToShop(CalamityMM, "CalamitasPhase3MusicBox", 250000, () => (bool)Calamity.Call("Downed", "supremecalamitas"))
-				.AddModItemToShop(CalamityMM, "CalamitasDefeatMusicBox", 250000, () => (bool)Calamity.Call("Downed", "supremecalamitas"))
-				.AddModItemToShop(CalamityMM, "CeaselessVoidMusicBox", 100000, () => (bool)Calamity.Call("Downed", "ceaselessvoid"))
-				.AddModItemToShop(CalamityMM, "CrabulonMusicBox", 100000, () => (bool)Calamity.Call("Downed", "crabulon"))
-				.AddModItemToShop(CalamityMM, "CryogenMusicBox", 100000, () => (bool)Calamity.Call("Downed", "cryogen"))
-				.AddModItemToShop(CalamityMM, "DevourerofGodsPhase1MusicBox", 500000, () => (bool)Calamity.Call("Downed", "dog"))
-				.AddModItemToShop(CalamityMM, "DevourerofGodsPhase2MusicBox", 500000, () => (bool)Calamity.Call("Downed", "dog"))
-				.AddModItemToShop(CalamityMM, "DragonfollyMusicBox", 100000, () => (bool)Calamity.Call("Downed", "dragonfolly"))
-				.AddModItemToShop(CalamityMM, "ExoMechsMusicBox", 500000, () => (bool)Calamity.Call("Downed", "exomechs"))
-				.AddModItemToShop(CalamityMM, "HiveMindMusicBox", 100000, () => (bool)Calamity.Call("Downed", "hive mind"))
-				.AddModItemToShop(CalamityMM, "LeviathanMusicBox", 100000, () => (bool)Calamity.Call("Downed", "leviathan"))
-				.AddModItemToShop(CalamityMM, "OldDukeMusicBox", 100000, () => (bool)Calamity.Call("Downed", "old duke"))
-				.AddModItemToShop(CalamityMM, "PerforatorsMusicBox", 100000, () => (bool)Calamity.Call("Downed", "perforators"))
-				.AddModItemToShop(CalamityMM, "PlaguebringerGoliathMusicBox", 100000, () => (bool)Calamity.Call("Downed", "plaguebringer goliath"))
-				.AddModItemToShop(CalamityMM, "PlanetoidMusicBox", 100000, Condition.Hardmode);
+
+            shop = new NPCShop(Type, Sh4);
+            if (CalamityLoaded)
+            {
+                shop
+                .AddModItemToShop(CalamityMM, "CalamityTitleMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AbyssLayer1MusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AbyssLayer2MusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AbyssLayer3MusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AbyssLayer4MusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AcidRainTier1MusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AcidRainTier3MusicBox", 100000, Condition.DownedMoonLord)
+                .AddModItemToShop(CalamityMM, "AnahitasLureMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AnahitaMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AquaticScourgeMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedAS", () => (bool)Calamity.Call("Downed", "aquatic scourge")))
+                .AddModItemToShop(CalamityMM, "AstralInfectionMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AstralInfectionUndergroundMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "AstrumAureusMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedAureus", () => (bool)Calamity.Call("Downed", "astrum aureus")))
+                .AddModItemToShop(CalamityMM, "AstrumDeusMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedAD", () => (bool)Calamity.Call("Downed", "astrum deus")))
+                .AddModItemToShop(CalamityMM, "BioLabMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "BossRushTier1MusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSCal", () => (bool)Calamity.Call("Downed", "supremecalamitas")))
+                .AddModItemToShop(CalamityMM, "BossRushTier2MusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSCal", () => (bool)Calamity.Call("Downed", "supremecalamitas")))
+                .AddModItemToShop(CalamityMM, "BossRushTier3MusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSCal", () => (bool)Calamity.Call("Downed", "supremecalamitas")))
+                .AddModItemToShop(CalamityMM, "BrimstoneCragsMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "BrimstoneElementalMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSCal", () => (bool)Calamity.Call("Downed", "brimstone elemental")))
+                .AddModItemToShop(CalamityMM, "CalamitasCloneMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSCal", () => (bool)Calamity.Call("Downed", "calamitas doppelganger")))
+                .AddModItemToShop(CalamityMM, "CalamitasPhase1MusicBox", 250000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSCal", () => (bool)Calamity.Call("Downed", "supremecalamitas")))
+                .AddModItemToShop(CalamityMM, "CalamitasPhase2MusicBox", 250000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSCal", () => (bool)Calamity.Call("Downed", "supremecalamitas")))
+                .AddModItemToShop(CalamityMM, "CalamitasPhase3MusicBox", 250000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSCal", () => (bool)Calamity.Call("Downed", "supremecalamitas")))
+                .AddModItemToShop(CalamityMM, "CalamitasDefeatMusicBox", 250000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSCal", () => (bool)Calamity.Call("Downed", "supremecalamitas")))
+                .AddModItemToShop(CalamityMM, "CeaselessVoidMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedCV", () => (bool)Calamity.Call("Downed", "ceaselessvoid")))
+                .AddModItemToShop(CalamityMM, "CrabulonMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedCrabulon", () => (bool)Calamity.Call("Downed", "crabulon")))
+                .AddModItemToShop(CalamityMM, "CryogenMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedCryo", () => (bool)Calamity.Call("Downed", "cryogen")))
+                .AddModItemToShop(CalamityMM, "DevourerofGodsPhase1MusicBox", 500000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")))
+                .AddModItemToShop(CalamityMM, "DevourerofGodsPhase2MusicBox", 500000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")))
+                .AddModItemToShop(CalamityMM, "DragonfollyMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedBumblebird", () => (bool)Calamity.Call("Downed", "dragonfolly")))
+                .AddModItemToShop(CalamityMM, "ExoMechsMusicBox", 500000, new Condition("Mods.CalamityMod.Condition.Drops.DownedExoMechs", () => (bool)Calamity.Call("Downed", "exomechs")))
+                .AddModItemToShop(CalamityMM, "HiveMindMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedHM", () => (bool)Calamity.Call("Downed", "hive mind")))
+                .AddModItemToShop(CalamityMM, "LeviathanMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedLevi", () => (bool)Calamity.Call("Downed", "leviathan")))
+                .AddModItemToShop(CalamityMM, "OldDukeMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedOD", () => (bool)Calamity.Call("Downed", "old duke")))
+                .AddModItemToShop(CalamityMM, "PerforatorsMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedPerfs", () => (bool)Calamity.Call("Downed", "perforators")))
+                .AddModItemToShop(CalamityMM, "PlaguebringerGoliathMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedPBG", () => (bool)Calamity.Call("Downed", "plaguebringer goliath")))
+                .AddModItemToShop(CalamityMM, "PlanetoidMusicBox", 100000, Condition.Hardmode);
+            }
+				
 			shop.Register();
-			
-			shop = new NPCShop(Type, Sh5)
-				.AddModItemToShop(CalamityMM, "PolterghastMusicBox", 100000, () => (bool)Calamity.Call("Downed", "polterghast"))
-				.AddModItemToShop(CalamityMM, "PrimordialWyrmMusicBox", 500000, () => (bool)Calamity.Call("Downed", "supremecalamitas"))
-				.AddModItemToShop(CalamityMM, "ProfanedGuardiansMusicBox", 100000, () => (bool)Calamity.Call("Downed", "providence"))
-				.AddModItemToShop(CalamityMM, "ProvidenceMusicBox", 100000, () => (bool)Calamity.Call("Downed", "providence"))
-				.AddModItemToShop(CalamityMM, "RavagerMusicBox", 100000, () => (bool)Calamity.Call("Downed", "ravager"))
-				.AddModItemToShop(CalamityMM, "SignusMusicBox", 100000, () => (bool)Calamity.Call("Downed", "signus"))
-				.AddModItemToShop(CalamityMM, "SlimeGodMusicBox", 100000, () => (bool)Calamity.Call("Downed", "slime god"))
-				.AddModItemToShop(CalamityMM, "StormWeaverMusicBox", 100000, () => (bool)Calamity.Call("Downed", "stormweaver"))
-				.AddModItemToShop(CalamityMM, "SulphurousSeaDayMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "SulphurousSeaNightMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "SunkenSeaMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(CalamityMM, "YharonLegacyMusicBox", 330000, () => (bool)Calamity.Call("Downed", "yharon"))
-				.AddModItemToShop(CalamityMM, "YharonPhase1MusicBox", 330000, () => (bool)Calamity.Call("Downed", "yharon"))
-				.AddModItemToShop(CalamityMM, "YharonPhase2MusicBox", 330000, () => (bool)Calamity.Call("Downed", "yharon"))
-				.AddModItemToShop(ThoriumMod, "AquaticDepthsMusicBox", 100000, Condition.Hardmode)
+
+            shop = new NPCShop(Type, Sh5);
+            if (CalamityLoaded)
+            {
+                shop
+                .AddModItemToShop(CalamityMM, "PolterghastMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedPolter", () => (bool)Calamity.Call("Downed", "polterghast")))
+                .AddModItemToShop(CalamityMM, "PrimordialWyrmMusicBox", 500000, new Condition("Mods.CalamityMod.Condition.Drops.SCal", () => (bool)Calamity.Call("Downed", "supremecalamitas")))
+                .AddModItemToShop(CalamityMM, "ProfanedGuardiansMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedProv", () => (bool)Calamity.Call("Downed", "providence")))
+                .AddModItemToShop(CalamityMM, "ProvidenceMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedProv", () => (bool)Calamity.Call("Downed", "providence")))
+                .AddModItemToShop(CalamityMM, "RavagerMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedRav", () => (bool)Calamity.Call("Downed", "ravager")))
+                .AddModItemToShop(CalamityMM, "SignusMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSig", () => (bool)Calamity.Call("Downed", "signus")))
+                .AddModItemToShop(CalamityMM, "SlimeGodMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSG", () => (bool)Calamity.Call("Downed", "slime god")))
+                .AddModItemToShop(CalamityMM, "StormWeaverMusicBox", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSW", () => (bool)Calamity.Call("Downed", "stormweaver")))
+                .AddModItemToShop(CalamityMM, "SulphurousSeaDayMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "SulphurousSeaNightMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "SunkenSeaMusicBox", 100000, Condition.Hardmode)
+                .AddModItemToShop(CalamityMM, "YharonLegacyMusicBox", 330000, new Condition("Mods.CalamityMod.Condition.Drops.DownedYharon", () => (bool)Calamity.Call("Downed", "yharon")))
+                .AddModItemToShop(CalamityMM, "YharonPhase1MusicBox", 330000, new Condition("Mods.CalamityMod.Condition.Drops.DownedYharon", () => (bool)Calamity.Call("Downed", "yharon")))
+                .AddModItemToShop(CalamityMM, "YharonPhase2MusicBox", 330000, new Condition("Mods.CalamityMod.Condition.Drops.DownedYharon", () => (bool)Calamity.Call("Downed", "yharon")));
+            }
+				
+				shop
+                .AddModItemToShop(ThoriumMod, "AquaticDepthsMusicBox", 100000, Condition.Hardmode)
 				.AddModItemToShop(ThoriumMod, "MiniBossMusicBox", 100000, Condition.Hardmode)
 				.AddModItemToShop(ThoriumMod, "SunkenPalaceMusicBox", 100000, Condition.Hardmode)
-				.AddModItemToShop(ThoriumMod, "BoreanStriderMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "BoreanStrider"))
-				.AddModItemToShop(ThoriumMod, "BuriedChampionMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "BuriedChampion"))
-				.AddModItemToShop(ThoriumMod, "FallenBeholderMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "FallenBeholder"))
-				.AddModItemToShop(ThoriumMod, "ForgottenOneMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "ForgottenOne"))
-				.AddModItemToShop(ThoriumMod, "GraniteEnergyStormMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "GraniteEnergyStorm"))
-				.AddModItemToShop(ThoriumMod, "LichMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "Lich"))
-				.AddModItemToShop(ThoriumMod, "QueenJellyfishMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "QueenJellyfish"))
-				.AddModItemToShop(ThoriumMod, "StarScouterMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "StarScouter"))
-				.AddModItemToShop(ThoriumMod, "TheGrandThunderBirdMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "TheGrandThunderBird"))
-				.AddModItemToShop(ThoriumMod, "ThePrimordialsMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "ThePrimordials"))
-				.AddModItemToShop(ThoriumMod, "ViscountMusicBox", 330000, () => (bool)ThoriumMod.Call("GetDownedBoss", "Viscount"));
+				.AddModItemToShop(ThoriumMod, "BoreanStriderMusicBox", 330000, new Condition("Mods.ThoriumMod.Conditions.BoreanStrider",() => (bool)ThoriumMod.Call("GetDownedBoss", "BoreanStrider")))
+				.AddModItemToShop(ThoriumMod, "BuriedChampionMusicBox", 330000, new Condition("Mods.ThoriumMod.Conditions.DownedBuriedChampion", () => (bool)ThoriumMod.Call("GetDownedBoss", "BuriedChampion")))
+				.AddModItemToShop(ThoriumMod, "FallenBeholderMusicBox", 330000, new Condition("Mods.ThoriumMod.Conditions.DownedFallenBeholder", () => (bool)ThoriumMod.Call("GetDownedBoss", "FallenBeholder")))
+				.AddModItemToShop(ThoriumMod, "ForgottenOneMusicBox", 330000, new Condition("Mods.ThoriumMod.Conditions.DownedForgottenOne", () => (bool)ThoriumMod.Call("GetDownedBoss", "ForgottenOne")))
+				.AddModItemToShop(ThoriumMod, "GraniteEnergyStormMusicBox", 330000, new Condition("Mods.AlchemistNPCLite.Conditions.Thorium.GraniteEnergyStorm", () => (bool)ThoriumMod.Call("GetDownedBoss", "GraniteEnergyStorm")))
+				.AddModItemToShop(ThoriumMod, "LichMusicBox", 330000, new Condition("Mods.ThoriumMod.Conditions.DownedLich", () => (bool)ThoriumMod.Call("GetDownedBoss", "Lich")))
+				.AddModItemToShop(ThoriumMod, "QueenJellyfishMusicBox", 330000, new Condition("Mods.ThoriumMod.Conditions.DownedQueenJellyfish", () => (bool)ThoriumMod.Call("GetDownedBoss", "QueenJellyfish")))
+				.AddModItemToShop(ThoriumMod, "StarScouterMusicBox", 330000, new Condition("Mods.ThoriumMod.Conditions.DownedStarScouter", () => (bool)ThoriumMod.Call("GetDownedBoss", "StarScouter")))
+				.AddModItemToShop(ThoriumMod, "TheGrandThunderBirdMusicBox", 330000, new Condition("Mods.AlchemistNPCLite.Conditions.Thorium.TheGrandThunderBird", () => (bool)ThoriumMod.Call("GetDownedBoss", "TheGrandThunderBird")))
+				.AddModItemToShop(ThoriumMod, "ThePrimordialsMusicBox", 330000, new Condition("Mods.AlchemistNPCLite.Conditions.Thorium.ThePrimordials", () => (bool)ThoriumMod.Call("GetDownedBoss", "ThePrimordials")))
+				.AddModItemToShop(ThoriumMod, "ViscountMusicBox", 330000, new Condition("Mods.ThoriumMod.Conditions.DownedViscount", () => (bool)ThoriumMod.Call("GetDownedBoss", "Viscount")));
 			shop.Register();
 		}
 

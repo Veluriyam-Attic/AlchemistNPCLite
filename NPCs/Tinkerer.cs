@@ -206,7 +206,7 @@ namespace AlchemistNPCLite.NPCs
                 .Add(new Item(ItemID.Flipper) { shopCustomPrice = 50000 })
                 .Add(new Item(ItemID.DivingHelmet) { shopCustomPrice = 250000 })
                 .Add(new Item(ItemID.NeptunesShell) { shopCustomPrice = 250000 },
-                    new Condition("", () => NPC.downedPlantBoss))
+                    Condition.DownedPlantera)
                 .Add(new Item(ItemID.LuckyHorseshoe) { shopCustomPrice = 50000 })
                 .Add(new Item(ItemID.ShinyRedBalloon) { shopCustomPrice = 50000 })
                 .Add(new Item(ItemID.CloudinaBottle) { shopCustomPrice = 30000 })

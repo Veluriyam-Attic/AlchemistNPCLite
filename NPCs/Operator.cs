@@ -939,68 +939,68 @@ namespace AlchemistNPCLite.NPCs
                 .Add(new Item(ItemID.Feather) { shopCustomPrice = 10000 }, Condition.DownedSkeletron)
                 .Add(new Item(ItemID.SharkFin) { shopCustomPrice = 10000 }, Condition.DownedSkeletron)
                 .Add(new Item(ItemID.Bone) { shopCustomPrice = 500 }, Condition.DownedSkeletron)
-				.Add(new Item(ItemID.FrostCore) { shopCustomPrice = 200000 }, new Condition("", () => AlchemistNPCLiteWorld.downedIceGolem))
-                .Add(new Item(ItemID.AncientBattleArmorMaterial) { shopCustomPrice = 200000 }, new Condition("", () => AlchemistNPCLiteWorld.downedSandElemental))
+				.Add(new Item(ItemID.FrostCore) { shopCustomPrice = 200000 }, new Condition("Mods.AlchemistNPCLite.Conditions.Vanilla.IceGolem", () => AlchemistNPCLiteWorld.downedIceGolem))
+                .Add(new Item(ItemID.AncientBattleArmorMaterial) { shopCustomPrice = 200000 }, new Condition("Mods.AlchemistNPCLite.Conditions.Vanilla.SandElemental", () => AlchemistNPCLiteWorld.downedSandElemental))
                 .Add(new Item(ItemID.SoulofLight) { shopCustomPrice = 10000 }, Condition.DownedMechBossAny)
                 .Add(new Item(ItemID.SoulofNight) { shopCustomPrice = 10000 }, Condition.DownedMechBossAny)
                 .Add(new Item(ItemID.SoulofFlight) { shopCustomPrice = 15000 }, Condition.DownedMechBossAny)
-                .Add(new Item(ItemID.SoulofMight) { shopCustomPrice = 20000 }, new Condition("", () => NPC.downedMechBoss1))
-                .Add(new Item(ItemID.SoulofSight) { shopCustomPrice = 20000 }, new Condition("", () => NPC.downedMechBoss2))
-                .Add(new Item(ItemID.BlackLens) { shopCustomPrice = 200000 }, new Condition("", () => NPC.downedMechBoss2))
-                .Add(new Item(ItemID.SoulofFright) { shopCustomPrice = 20000 }, new Condition("", () => NPC.downedMechBoss3))
+                .Add(new Item(ItemID.SoulofMight) { shopCustomPrice = 20000 }, Condition.DownedDestroyer)
+                .Add(new Item(ItemID.SoulofSight) { shopCustomPrice = 20000 }, Condition.DownedTwins)
+                .Add(new Item(ItemID.BlackLens) { shopCustomPrice = 200000 }, Condition.DownedTwins)
+                .Add(new Item(ItemID.SoulofFright) { shopCustomPrice = 20000 }, Condition.DownedSkeletronPrime)
                 .Add(new Item(ItemID.HallowedBar) { shopCustomPrice = 15000 }, Condition.DownedMechBossAll)
-                .Add(new Item(ItemID.Ectoplasm) { shopCustomPrice = 20000 }, new Condition("", () => NPC.downedPlantBoss))
-                .Add(new Item(ItemID.FragmentSolar) { shopCustomPrice = 50000 }, new Condition("", () => NPC.downedMoonlord))
-                .Add(new Item(ItemID.FragmentNebula) { shopCustomPrice = 50000 }, new Condition("", () => NPC.downedMoonlord))
-                .Add(new Item(ItemID.FragmentVortex) { shopCustomPrice = 50000 }, new Condition("", () => NPC.downedMoonlord))
-                .Add(new Item(ItemID.FragmentStardust) { shopCustomPrice = 50000 }, new Condition("", () => NPC.downedMoonlord));
+                .Add(new Item(ItemID.Ectoplasm) { shopCustomPrice = 20000 }, Condition.DownedPlantera)
+                .Add(new Item(ItemID.FragmentSolar) { shopCustomPrice = 50000 }, Condition.DownedMoonLord)
+                .Add(new Item(ItemID.FragmentNebula) { shopCustomPrice = 50000 }, Condition.DownedMoonLord)
+                .Add(new Item(ItemID.FragmentVortex) { shopCustomPrice = 50000 }, Condition.DownedMoonLord)
+                .Add(new Item(ItemID.FragmentStardust) { shopCustomPrice = 50000 }, Condition.DownedMoonLord);
             shop.Register();
             #endregion
 
             #region Mod Material Shop
             shop = new NPCShop(Type, ModMaterialShop)
             #region Alchemist
-                .Add(new Item(ModContent.ItemType<Items.Misc.GlobalTeleporter>()), new Condition("", () => Main.hardMode))
-                .Add(new Item(ModContent.ItemType<Items.Misc.WorldControlUnit>()) { shopCustomPrice = 3000000 }, new Condition("", () => Main.hardMode))
-                .Add(new Item(ModContent.ItemType<Items.Misc.GlobalTeleporterUp>()), new Condition("", () => NPC.downedMoonlord))
+                .Add(new Item(ModContent.ItemType<Items.Misc.GlobalTeleporter>()), Condition.Hardmode)
+                .Add(new Item(ModContent.ItemType<Items.Misc.WorldControlUnit>()) { shopCustomPrice = 3000000 },Condition.Hardmode)
+                .Add(new Item(ModContent.ItemType<Items.Misc.GlobalTeleporterUp>()), Condition.DownedMoonLord)
             #endregion
             #region Thorium
                 .AddModItemToShop(ThoriumMod, "Petal", 5000)
-                .AddModItemToShop(ThoriumMod, "BrokenHeroFragment", 250000, () => NPC.downedGolemBoss)
-                .AddModItemToShop(ThoriumMod, "WhiteDwarfFragment", 50000, () => NPC.downedMoonlord)
-                .AddModItemToShop(ThoriumMod, "CometFragment", 50000, () => NPC.downedMoonlord)
-                .AddModItemToShop(ThoriumMod, "CelestialFragment", 50000, () => NPC.downedMoonlord)
+                .AddModItemToShop(ThoriumMod, "BrokenHeroFragment", 250000, Condition.DownedGolem)
+                .AddModItemToShop(ThoriumMod, "WhiteDwarfFragment", 50000, Condition.DownedMoonLord)
+                .AddModItemToShop(ThoriumMod, "CometFragment", 50000, Condition.DownedMoonLord)
+                .AddModItemToShop(ThoriumMod, "CelestialFragment", 50000, Condition.DownedMoonLord)
             #endregion
             #region Calamity
-                .AddModItemToShop(Calamity, "TrueShadowScale", 20000, () => (bool)Calamity.Call("Downed", "hive mind"))
-                .AddModItemToShop(Calamity, "BloodSample", 20000, () => (bool)Calamity.Call("Downed", "perforators"))
-                .AddModItemToShop(Calamity, "EbonianGel", 25000, () => (bool)Calamity.Call("Downed", "slime god"))
-                .AddModItemToShop(Calamity, "PurifiedGel", 30000, () => (bool)Calamity.Call("Downed", "slime god"))
-                .AddModItemToShop(Calamity, "UnholyCore", 100000, () => (bool)Calamity.Call("Downed", "calamitas doppelganger"))
-                .AddModItemToShop(Calamity, "EssenceofEleum", 25000, () => NPC.downedPlantBoss || (bool)Calamity.Call("Downed", "cryogen"))
-                .AddModItemToShop(Calamity, "EssenceofCinder", 25000, () => NPC.downedPlantBoss || (bool)Calamity.Call("Downed", "aquatic scourge"))
-                .AddModItemToShop(Calamity, "EssenceofChaos", 25000, () => NPC.downedPlantBoss || (bool)Calamity.Call("Downed", "brimstone elemental"))
-                //.addModItemToShop(Calamity, "Tenebris", 30000, () => NPC.downedPlantBoss)
-                .AddModItemToShop(Calamity, "Lumenite", 50000, () => (bool)Calamity.Call("Downed", "leviathan"))
-                .AddModItemToShop(Calamity, "DepthCells", 30000, () => (bool)Calamity.Call("Downed", "leviathan"))
-                .AddModItemToShop(Calamity, "AstralJelly", 50000, () => (bool)Calamity.Call("Downed", "astrum aureus"))
-                .AddModItemToShop(Calamity, "Stardust", 10000, () => (bool)Calamity.Call("Downed", "astrum aureus"))
-                .AddModItemToShop(Calamity, "LivingShard", 30000, () => NPC.downedPlantBoss)
-                .AddModItemToShop(Calamity, "SolarVeil", 50000, () => NPC.downedPlantBoss)
-                .AddModItemToShop(Calamity, "BarofLife", 100000, () => (bool)Calamity.Call("Downed", "ravager"))
-                .AddModItemToShop(Calamity, "MeldBlob", 10000, () => (bool)Calamity.Call("Downed", "astrum deus"))
-                .AddModItemToShop(Calamity, "UnholyEssence", 50000, () => (bool)Calamity.Call("Downed", "profaned guardians"))
-                .AddModItemToShop(Calamity, "BloodOrb", 50000, () => (bool)Calamity.Call("Downed", "polterghast"))
-                .AddModItemToShop(Calamity, "Phantoplasm", 100000, () => (bool)Calamity.Call("Downed", "polterghast"))
-                .AddModItemToShop(Calamity, "NightmareFuel", 120000, () => (bool)Calamity.Call("Downed", "dog") && AlchemistNPCLiteWorld.downedDOGPumpking)
-                .AddModItemToShop(Calamity, "EndothermicEnergy", 120000, () => (bool)Calamity.Call("Downed", "dog") && AlchemistNPCLiteWorld.downedDOGIceQueen)
-                .AddModItemToShop(Calamity, "DarksunFragment", 150000, () => (bool)Calamity.Call("Downed", "dog") && AlchemistNPCLiteWorld.downedDOGMothron)
+                .AddModItemToShop(Calamity, "TrueShadowScale", 20000, new Condition("Mods.CalamityMod.Condition.Drops.DownedHM", () => (bool)Calamity.Call("Downed", "hive mind")))
+                .AddModItemToShop(Calamity, "BloodSample", 20000, new Condition("Mods.CalamityMod.Condition.Drops.DownedPerfs", () => (bool)Calamity.Call("Downed", "perforators")))
+                .AddModItemToShop(Calamity, "EbonianGel", 25000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSG", () => (bool)Calamity.Call("Downed", "slime god")))
+                .AddModItemToShop(Calamity, "PurifiedGel", 30000, new Condition("Mods.CalamityMod.Condition.Drops.DownedSG", () => (bool)Calamity.Call("Downed", "slime god")))
+                .AddModItemToShop(Calamity, "UnholyCore", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedCal", () => (bool)Calamity.Call("Downed", "calamitas doppelganger")))
+                .AddModItemToShop(Calamity, "EssenceofEleum", 25000, Calamity == null? Condition.DownedPlantera : new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.CryoOrPlantera", () => (bool)Calamity.Call("Downed", "cryogen") || NPC.downedPlantBoss))
+                .AddModItemToShop(Calamity, "EssenceofCinder", 25000, Calamity == null ? Condition.DownedPlantera : new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.ASOrPlantera", () => (bool)Calamity.Call("Downed", "aquatic scourge") || NPC.downedPlantBoss))
+                .AddModItemToShop(Calamity, "EssenceofChaos", 25000, Calamity == null ? Condition.DownedPlantera : new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.BrimOrPlantera", () => (bool)Calamity.Call("Downed", "brimstone elemental") || NPC.downedPlantBoss))
+                //.addModItemToShop(Calamity, "Tenebris", 30000, Condition.DownedPlantera)
+                .AddModItemToShop(Calamity, "Lumenite", 50000, new Condition("Mods.CalamityMod.Condition.Drops.DownedLevi", () => (bool)Calamity.Call("Downed", "leviathan")))
+                .AddModItemToShop(Calamity, "DepthCells", 30000, new Condition("Mods.CalamityMod.Condition.Drops.DownedLevi", () => (bool)Calamity.Call("Downed", "leviathan")))
+                .AddModItemToShop(Calamity, "AstralJelly", 50000, new Condition("Mods.CalamityMod.Condition.Drops.DownedAureus", () => (bool)Calamity.Call("Downed", "astrum aureus")))
+                .AddModItemToShop(Calamity, "Stardust", 10000, new Condition("Mods.CalamityMod.Condition.Drops.DownedAureus", () => (bool)Calamity.Call("Downed", "astrum aureus")))
+                .AddModItemToShop(Calamity, "LivingShard", 30000, Condition.DownedPlantera)
+                .AddModItemToShop(Calamity, "SolarVeil", 50000, Condition.DownedPlantera)
+                .AddModItemToShop(Calamity, "BarofLife", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedRav", () => (bool)Calamity.Call("Downed", "ravager")))
+                .AddModItemToShop(Calamity, "MeldBlob", 10000, new Condition("Mods.CalamityMod.Condition.Drops.DownedAD", () => (bool)Calamity.Call("Downed", "astrum deus")))
+                .AddModItemToShop(Calamity, "UnholyEssence", 50000, new Condition("Mods.CalamityMod.Condition.Drops.DownedGuard", () => (bool)Calamity.Call("Downed", "profaned guardians")))
+                .AddModItemToShop(Calamity, "BloodOrb", 50000, new Condition("Mods.CalamityMod.Condition.Drops.DownedPolter", () => (bool)Calamity.Call("Downed", "polterghast")))
+                .AddModItemToShop(Calamity, "Phantoplasm", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedPolter", () => (bool)Calamity.Call("Downed", "polterghast")))
+                .AddModItemToShop(Calamity, "NightmareFuel", 120000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.DOGPumpking", () => AlchemistNPCLiteWorld.downedDOGPumpking))
+                .AddModItemToShop(Calamity, "EndothermicEnergy", 120000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.DOGIceQueen", () => AlchemistNPCLiteWorld.downedDOGIceQueen))
+                .AddModItemToShop(Calamity, "DarksunFragment", 150000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Vanilla.downedDOGMothron", () => AlchemistNPCLiteWorld.downedDOGMothron))
             #endregion
             #region Fargo
-                .AddModItemToShop(FargoSouls, "DeviatingEnergy", Item.sellPrice(0, 1, 50, 0), () => FargoDowned.Devi)
-                .AddModItemToShop(FargoSouls, "Eridanium", Item.sellPrice(0, 8, 50, 0), () => FargoDowned.Cosmos)
-                .AddModItemToShop(FargoSouls, "AbomEnergy", Item.sellPrice(0, 6, 50, 0), () => FargoDowned.Abom)
-                .AddModItemToShop(FargoSouls, "EternalEnergy", Item.sellPrice(0, 9, 50, 0), () => FargoDowned.Mutant)
+                .AddModItemToShop(FargoSouls, "DeviatingEnergy", Item.sellPrice(0, 1, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.FargoSouls.downedDevi", () => FargoDowned.Devi))
+                .AddModItemToShop(FargoSouls, "Eridanium", Item.sellPrice(0, 8, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.FargoSouls.downedCosmos", () => FargoDowned.Cosmos))
+                .AddModItemToShop(FargoSouls, "AbomEnergy", Item.sellPrice(0, 6, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.FargoSouls.downedAbom", () => FargoDowned.Abom))
+                .AddModItemToShop(FargoSouls, "EternalEnergy", Item.sellPrice(0, 9, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.FargoSouls.downedMutant", () => FargoDowned.Mutant))
             #endregion
             #region Spirit
                 //if (ModLoader.GetMod("SpiritMod") != null)
@@ -1024,13 +1024,13 @@ namespace AlchemistNPCLite.NPCs
                 .AddModItemToShop(Atheria, "SoulOfTwilight", 1000)
                 .AddModItemToShop(Atheria, "SoulOfSpite", 1000)
                 .AddModItemToShop(Atheria, "AreusShard", 10000, Condition.DownedEowOrBoc)
-                .AddModItemToShop(Atheria, "HardlightPrism", 15000, () => ShardsConditions.DownedNova)
+                .AddModItemToShop(Atheria, "HardlightPrism", 15000, new Condition("Mods.ShardsOfAtheria.Conditions.Nova", () => ShardsConditions.DownedNova))
                 .AddModItemToShop(Atheria, "BrokenHeroGun", 45000, Condition.DownedGolem)
                 .AddModItemToShop(Atheria, "FragmentEntropy", 180000, Condition.DownedMoonLord)
                 .AddModItemToShop(Atheria, "MemoryFragment", 10000, Condition.DownedMoonLord)
             #endregion
             #region Catalyst
-            .AddModItemToShop(Catalyst, "MetanovaOre", Item.buyPrice(0, 2, 0, 0), () => CatalystDown.Astrageldon);
+            .AddModItemToShop(Catalyst, "MetanovaOre", Item.buyPrice(0, 2, 0, 0), new Condition("Mod.AlchemistNPCLite.Conditions.Catalyst.Astrageldon", () => CatalystDown.Astrageldon));
             #endregion
             ShopPaginator.Register(shop); // Gregg: paginate instead of Register() — overflow past 39 no longer dropped
             #endregion
@@ -1040,78 +1040,78 @@ namespace AlchemistNPCLite.NPCs
                 .Add(new Item(ModContent.ItemType<Items.Notes.InformatingNote>()) { shopCustomPrice = 30000 },
                     new Condition("", () => !NPC.downedBoss3))
                 .Add(new Item(ItemID.KingSlimeBossBag) { shopCustomPrice = 500000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode))
+                    Condition.DownedSkeletron,Condition.DownedKingSlime,Condition.InExpertMode)
                 .Add(new Item(ItemID.EyeOfCthulhuBossBag) { shopCustomPrice = 700000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode))
+                    Condition.DownedSkeletron, Condition.DownedEyeOfCthulhu, Condition.InExpertMode)
                 .Add(new Item(ItemID.EaterOfWorldsBossBag) { shopCustomPrice = 1000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode))
+                    Condition.DownedSkeletron, Condition.DownedEaterOfWorlds, Condition.InExpertMode)
                 .Add(new Item(ItemID.BrainOfCthulhuBossBag) { shopCustomPrice = 1000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode))
+                    Condition.DownedSkeletron, Condition.DownedBrainOfCthulhu, Condition.InExpertMode)
                 .Add(new Item(ItemID.QueenBeeBossBag) { shopCustomPrice = 1250000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode))
+                    Condition.DownedSkeletron, Condition.DownedQueenBee, Condition.InExpertMode)
                 .Add(new Item(ItemID.SkeletronBossBag) { shopCustomPrice = 1000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode))
+                    Condition.DownedSkeletron, Condition.DownedKingSlime, Condition.InExpertMode)
                 .Add(new Item(ItemID.DeerclopsBossBag) { shopCustomPrice = 1500000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedDeerclops))
-                .AddModItemToShop(ThoriumMod, "DarkMageBag", 1000000, () => NPC.downedBoss3 && Main.expertMode && DD2Event.DownedInvasionT1)
+                    Condition.DownedSkeletron, Condition.DownedDeerclops, Condition.InExpertMode)
+                .AddModItemToShop(ThoriumMod, "DarkMageBag", 1000000, Condition.DownedSkeletron, Condition.DownedKingSlime, Condition.InExpertMode,Condition.DownedOldOnesArmyT1)
                 .Add(new Item(ItemID.WallOfFleshBossBag) { shopCustomPrice = 2750000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && Main.hardMode))
+                    Condition.DownedSkeletron, Condition.Hardmode, Condition.InExpertMode)
                 .Add(new Item(ItemID.QueenSlimeBossBag) { shopCustomPrice = 3000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedQueenSlime))
+                    Condition.DownedSkeletron, Condition.DownedQueenSlime, Condition.InExpertMode)
                 .Add(new Item(ItemID.DestroyerBossBag) { shopCustomPrice = 4000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3))
+                    Condition.DownedSkeletron, Condition.DownedMechBossAll, Condition.InExpertMode)
                 .Add(new Item(ItemID.TwinsBossBag) { shopCustomPrice = 4000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3))
+                    Condition.DownedSkeletron, Condition.DownedMechBossAll, Condition.InExpertMode)
                 .Add(new Item(ItemID.SkeletronPrimeBossBag) { shopCustomPrice = 4000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3))
-                .AddModItemToShop(ThoriumMod, "OgreBag", 1000000, () => NPC.downedBoss3 && Main.expertMode && DD2Event.DownedInvasionT2 && NPC.downedMechBossAny)
+                    Condition.DownedSkeletron, Condition.DownedMechBossAll, Condition.InExpertMode)
+                .AddModItemToShop(ThoriumMod, "OgreBag", 1000000, Condition.DownedSkeletron, Condition.DownedMechBossAny, Condition.InExpertMode,Condition.DownedOldOnesArmyT2)
                 .Add(new Item(ItemID.PlanteraBossBag) { shopCustomPrice = 5000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedPlantBoss))
+                    Condition.DownedSkeletron, Condition.DownedPlantera, Condition.InExpertMode)
                 .Add(new Item(ItemID.FairyQueenBossBag) { shopCustomPrice = 5000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedEmpressOfLight))
+                    Condition.DownedSkeletron, Condition.DownedEmpressOfLight, Condition.InExpertMode)
                 .Add(new Item(ItemID.GolemBossBag) { shopCustomPrice = 6000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedGolemBoss))
+                    Condition.DownedSkeletron, Condition.DownedGolem, Condition.InExpertMode)
                 .Add(new Item(ItemID.BossBagBetsy) { shopCustomPrice = 7000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && DD2Event.DownedInvasionT3 && NPC.downedGolemBoss))
+                    Condition.DownedSkeletron, Condition.DownedOldOnesArmyT3, Condition.InExpertMode,Condition.DownedGolem)
                 .Add(new Item(ItemID.FishronBossBag) { shopCustomPrice = 7000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedFishron))
+                    Condition.DownedSkeletron, Condition.DownedDukeFishron, Condition.InExpertMode)
                 .Add(new Item(ItemID.MoonLordBossBag) { shopCustomPrice = 12000000 },
-                    new Condition("", () => NPC.downedBoss3 && Main.expertMode && NPC.downedMoonlord));
+                    Condition.DownedSkeletron, Condition.DownedMoonLord, Condition.InExpertMode);
             shop.Register();
             #endregion
 
             #region Bags 1 Shop - Calamity & lots of Affiliated Mods(Catalyst Entropy(added by itself) CalamityHunt)
             shop = new NPCShop(Type, Bags1Shop)
             #region Calamaity Part
-                .AddModItemToShop(Calamity, "DesertScourgeBag", 375000, () => (bool)Calamity.Call("Downed", "desert scourge"))
-                .AddModItemToShop(Calamity, "CrabulonBag", 700000, () => (bool)Calamity.Call("Downed", "crabulon"))
-                .AddModItemToShop(Calamity, "HiveMindBag", 1000000, () => (bool)Calamity.Call("Downed", "hive mind") || (bool)Calamity.Call("Downed", "perforators"))
-                .AddModItemToShop(Calamity, "PerforatorBag", 1000000, () => (bool)Calamity.Call("Downed", "hive mind") || (bool)Calamity.Call("Downed", "perforators"))
-                .AddModItemToShop(Calamity, "SlimeGodBag", 1000000, () => (bool)Calamity.Call("Downed", "slime god"))
-                .AddModItemToShop(Calamity, "CryogenBag", 2000000, () => (bool)Calamity.Call("Downed", "cryogen"))
-                .AddModItemToShop(Calamity, "AquaticScourgeBag", 2000000, () => (bool)Calamity.Call("Downed", "aquatic scourge"))
-                .AddModItemToShop(Calamity, "BrimstoneWaifuBag", 5000000, () => (bool)Calamity.Call("Downed", "brimstone elemental"))
-                .AddModItemToShop(Calamity, "CalamitasBag", 5000000, () => (bool)Calamity.Call("Downed", "calamitas doppelganger"))
-                .AddModItemToShop(Calamity, "LeviathanBag", 4250000, () => (bool)Calamity.Call("Downed", "leviathan"))
-                .AddModItemToShop(Calamity, "AstrageldonBag", 5000000, () => (bool)Calamity.Call("Downed", "astrum aureus"))
-                .AddModItemToShop(Calamity, "PlaguebringerGoliathBag", 5750000, () => (bool)Calamity.Call("Downed", "plaguebringer goliath"))
-                .AddModItemToShop(Calamity, "RavagerBag", 5500000, () => (bool)Calamity.Call("Downed", "ravager"))
-                .AddModItemToShop(Calamity, "AstrumDeusBag", 6500000, () => (bool)Calamity.Call("Downed", "astrum deus"))
-                .AddModItemToShop(Calamity, "BumblebirbBag", 8500000, () => (bool)Calamity.Call("Downed", "dragonfolly"))
-                .AddModItemToShop(Calamity, "ProvidenceBag", 22000000, () => (bool)Calamity.Call("Downed", "providence"))
-                .AddModItemToShop(Calamity, "StormWeaverBag", 12500000, () => (bool)Calamity.Call("Downed", "stormweaver"))
-                .AddModItemToShop(Calamity, "CeaselessVoidBag", 12500000, () => (bool)Calamity.Call("Downed", "ceaselessvoid"))
-                .AddModItemToShop(Calamity, "SignusBag", 12500000, () => (bool)Calamity.Call("Downed", "signus"))
-                .AddModItemToShop(Calamity, "PolterghastBag", 22500000, () => (bool)Calamity.Call("Downed", "polterghast"))
-                .AddModItemToShop(Calamity, "OldDukeBag", 25000000, () => (bool)Calamity.Call("Downed", "old duke"))
-                .AddModItemToShop(Calamity, "DevourerofGodsBag", 25000000, () => (bool)Calamity.Call("Downed", "dog"))
-                .AddModItemToShop(Calamity, "YharonBag", 75000000, () => (bool)Calamity.Call("Downed", "yharon"))
-                .AddModItemToShop(Calamity, "DraedonTreasureBag", 115000000, () => (bool)Calamity.Call("Downed", "exomechs"))
-                .AddModItemToShop(Calamity, "SCalBag", 200000000, () => (bool)Calamity.Call("Downed", "supremecalamitas"))
+                .AddModItemToShop(Calamity, "DesertScourgeBag", 375000, new Condition("Mods.CalamityMod.Condition.DownedDS", () => (bool)Calamity.Call("Downed", "desert scourge")))
+                .AddModItemToShop(Calamity, "CrabulonBag", 700000, new Condition("Mods.CalamityMod.Condition.DownedCrabulon", () => (bool)Calamity.Call("Downed", "crabulon")))
+                .AddModItemToShop(Calamity, "HiveMindBag", 1000000, new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.PerfsOrHM", () => (bool)Calamity.Call("Downed", "hive mind") || (bool)Calamity.Call("Downed", "perforators")))
+                .AddModItemToShop(Calamity, "PerforatorBag", 1000000, new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.PerfsOrHM", () => (bool)Calamity.Call("Downed", "hive mind") || (bool)Calamity.Call("Downed", "perforators")))
+                .AddModItemToShop(Calamity, "SlimeGodBag", 1000000, new Condition("Mods.CalamityMod.Condition.DownedSG", () => (bool)Calamity.Call("Downed", "slime god")))
+                .AddModItemToShop(Calamity, "CryogenBag", 2000000, new Condition("Mods.CalamityMod.Condition.DownedCryo", () => (bool)Calamity.Call("Downed", "cryogen")))
+                .AddModItemToShop(Calamity, "AquaticScourgeBag", 2000000, new Condition("Mods.CalamityMod.Condition.DownedAS", () => (bool)Calamity.Call("Downed", "aquatic scourge")))
+                .AddModItemToShop(Calamity, "BrimstoneWaifuBag", 5000000, new Condition("Mods.CalamityMod.Condition.DownedBrim", () => (bool)Calamity.Call("Downed", "brimstone elemental")))
+                .AddModItemToShop(Calamity, "CalamitasBag", 5000000, new Condition("Mods.CalamityMod.Condition.DownedCal", () => (bool)Calamity.Call("Downed", "calamitas doppelganger")))
+                .AddModItemToShop(Calamity, "LeviathanBag", 4250000, new Condition("Mods.CalamityMod.Condition.DownedLevi", () => (bool)Calamity.Call("Downed", "leviathan")))
+                .AddModItemToShop(Calamity, "AstrageldonBag", 5000000, new Condition("Mods.CalamityMod.Condition.DownedAureus", () => (bool)Calamity.Call("Downed", "astrum aureus")))
+                .AddModItemToShop(Calamity, "PlaguebringerGoliathBag", 5750000, new Condition("Mods.CalamityMod.Condition.DownedPBG", () => (bool)Calamity.Call("Downed", "plaguebringer goliath")))
+                .AddModItemToShop(Calamity, "RavagerBag", 5500000, new Condition("Mods.CalamityMod.Condition.DownedRav", () => (bool)Calamity.Call("Downed", "ravager")))
+                .AddModItemToShop(Calamity, "AstrumDeusBag", 6500000, new Condition("Mods.CalamityMod.Condition.DownedAD", () => (bool)Calamity.Call("Downed", "astrum deus")))
+                .AddModItemToShop(Calamity, "BumblebirbBag", 8500000, new Condition("Mods.CalamityMod.Condition.DownedBirb", () => (bool)Calamity.Call("Downed", "dragonfolly")))
+                .AddModItemToShop(Calamity, "ProvidenceBag", 22000000, new Condition("Mods.CalamityMod.Condition.DownedProv", () => (bool)Calamity.Call("Downed", "providence")))
+                .AddModItemToShop(Calamity, "StormWeaverBag", 12500000, new Condition("Mods.CalamityMod.Condition.DownedSW", () => (bool)Calamity.Call("Downed", "stormweaver")))
+                .AddModItemToShop(Calamity, "CeaselessVoidBag", 12500000, new Condition("Mods.CalamityMod.Condition.DownedCV", () => (bool)Calamity.Call("Downed", "ceaselessvoid")))
+                .AddModItemToShop(Calamity, "SignusBag", 12500000, new Condition("Mods.CalamityMod.Condition.DownedSig", () => (bool)Calamity.Call("Downed", "signus")))
+                .AddModItemToShop(Calamity, "PolterghastBag", 22500000, new Condition("Mods.CalamityMod.Condition.DownedPolter", () => (bool)Calamity.Call("Downed", "polterghast")))
+                .AddModItemToShop(Calamity, "OldDukeBag", 25000000, new Condition("Mods.CalamityMod.Condition.DownedOD", () => (bool)Calamity.Call("Downed", "old duke")))
+                .AddModItemToShop(Calamity, "DevourerofGodsBag", 25000000, new Condition("Mods.CalamityMod.Condition.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")))
+                .AddModItemToShop(Calamity, "YharonBag", 75000000, new Condition("Mods.CalamityMod.Condition.DownedYharon", () => (bool)Calamity.Call("Downed", "yharon")))
+                .AddModItemToShop(Calamity, "DraedonTreasureBag", 115000000, new Condition("Mods.CalamityMod.Condition.DownedExos", () => (bool)Calamity.Call("Downed", "exomechs")))
+                .AddModItemToShop(Calamity, "SCalBag", 200000000, new Condition("Mods.CalamityMod.Condition.DownedSCal", () => (bool)Calamity.Call("Downed", "supremecalamitas")))
             #endregion
             #region Affiliated Mod
-            .AddModItemToShop(CalamityHunt, "TreasureTrunk", 200000000, () => CalamityHuntDown.Goozma) // The price is as same as Supreme Calamitas's
-            .AddModItemToShop(Catalyst,"AstrageldonBag", 12000000, () => CatalystDown.Astrageldon);// The price is as same as MoonLord's
+            .AddModItemToShop(CalamityHunt, "TreasureTrunk", 200000000, new Condition("Mods.AlchemistNPCLite.Conditions.CalamityHunt.Goozma",() => CalamityHuntDown.Goozma)) // The price is as same as Supreme Calamitas's
+            .AddModItemToShop(Catalyst,"AstrageldonBag", 12000000, new Condition("Mod.AlchemistNPCLite.Conditions.Catalyst.Astrageldon", () => CatalystDown.Astrageldon));// The price is as same as MoonLord's
                 ;
             shop.Register();
             #endregion
@@ -1120,32 +1120,32 @@ namespace AlchemistNPCLite.NPCs
             #region Bags 2 Shop - Fargo & Thorium & Ancient Awaken
             shop = new NPCShop(Type, Bags2Shop)
             #region Fargo
-                 .AddModItemToShop(FargoSouls, "TrojanSquirrelBag", Item.buyPrice(0, 20, 0, 0), () => FargoDowned.Trojan)
-                 .AddModItemToShop(FargoSouls, "CursedCoffinBag", Item.buyPrice(0, 29, 0, 0), () => FargoDowned.Cursed)
-                 .AddModItemToShop(FargoSouls, "DeviBag", Item.buyPrice(1, 0, 0, 0), () => FargoDowned.Devi)
-                 .AddModItemToShop(FargoSouls, "BanishedBaronBag", Item.buyPrice(1, 25, 0, 0), () => FargoDowned.Banished)
-                 .AddModItemToShop(FargoSouls, "LifelightBag", Item.buyPrice(1, 60, 0, 0), () => FargoDowned.LifeLight)
-                 .AddModItemToShop(FargoSouls, "CosmosBag", Item.buyPrice(20, 60, 0, 0), () => FargoDowned.Cosmos)
-                 .AddModItemToShop(FargoSouls, "AbomBag", Item.buyPrice(30, 60, 0, 0), () => FargoDowned.Abom)
-                 .AddModItemToShop(FargoSouls, "MutantBag", Item.buyPrice(40, 60, 0, 0), () => FargoDowned.Mutant)
+                 .AddModItemToShop(FargoSouls, "TrojanSquirrelBag", Item.buyPrice(0, 20, 0, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Trojan", () => FargoDowned.Trojan))
+                 .AddModItemToShop(FargoSouls, "CursedCoffinBag", Item.buyPrice(0, 29, 0, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Cursed", () => FargoDowned.Cursed))
+                 .AddModItemToShop(FargoSouls, "DeviBag", Item.buyPrice(1, 0, 0, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Devi", () => FargoDowned.Devi))
+                 .AddModItemToShop(FargoSouls, "BanishedBaronBag", Item.buyPrice(1, 25, 0, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Banished", () => FargoDowned.Banished))
+                 .AddModItemToShop(FargoSouls, "LifelightBag", Item.buyPrice(1, 60, 0, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.LifeLight", () => FargoDowned.LifeLight))
+                 .AddModItemToShop(FargoSouls, "CosmosBag", Item.buyPrice(20, 60, 0, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Cosmos", () => FargoDowned.Cosmos))
+                 .AddModItemToShop(FargoSouls, "AbomBag", Item.buyPrice(30, 60, 0, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Abom", () => FargoDowned.Abom))
+                 .AddModItemToShop(FargoSouls, "MutantBag", Item.buyPrice(40, 60, 0, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Mutant", () => FargoDowned.Mutant))
             #endregion
             #region Thorium Part
-                .AddModItemToShop(ThoriumMod, "ThunderBirdBag", 500000, () => (bool)ThoriumMod.Call("GetDownedBoss", "TheGrandThunderBird"))
-                .AddModItemToShop(ThoriumMod, "JellyFishBag", 750000, () => (bool)ThoriumMod.Call("GetDownedBoss", "QueenJellyfish"))
-                .AddModItemToShop(ThoriumMod, "CountBag", 850000, () => (bool)ThoriumMod.Call("GetDownedBoss", "Viscount"))
-                .AddModItemToShop(ThoriumMod, "GraniteBag", 1000000, () => (bool)ThoriumMod.Call("GetDownedBoss", "GraniteEnergyStorm"))
-                .AddModItemToShop(ThoriumMod, "HeroBag", 1000000, () => (bool)ThoriumMod.Call("GetDownedBoss", "BuriedChampion"))
-                .AddModItemToShop(ThoriumMod, "ScouterBag", 1250000, () => (bool)ThoriumMod.Call("GetDownedBoss", "StarScouter"))
-                .AddModItemToShop(ThoriumMod, "BoreanBag", 1500000, () => (bool)ThoriumMod.Call("GetDownedBoss", "BoreanStrider"))
-                .AddModItemToShop(ThoriumMod, "BeholderBag", 2000000, () => (bool)ThoriumMod.Call("GetDownedBoss", "FallenBeholder"))
-                .AddModItemToShop(ThoriumMod, "LichBag", 3000000, () => (bool)ThoriumMod.Call("GetDownedBoss", "Lich"))
-                .AddModItemToShop(ThoriumMod, "AbyssionBag", 3500000, () => (bool)ThoriumMod.Call("GetDownedBoss", "ForgottenOne"))
-                .AddModItemToShop(ThoriumMod, "RagBag", 5000000, () => (bool)ThoriumMod.Call("GetDownedBoss", "ThePrimordials"))
+                .AddModItemToShop(ThoriumMod, "ThunderBirdBag", 500000, new Condition("Mods.AlchemistNPCLite.Conditions.Thorium.TheGrandThunderBird", () => (bool)ThoriumMod.Call("GetDownedBoss", "TheGrandThunderBird")))
+                .AddModItemToShop(ThoriumMod, "JellyFishBag", 750000, new Condition("Mods.ThoriumMod.Conditions.DownedQueenJellyfish", () => (bool)ThoriumMod.Call("GetDownedBoss", "QueenJellyfish")))
+                .AddModItemToShop(ThoriumMod, "CountBag", 850000, new Condition("Mods.ThoriumMod.Conditions.DownedViscount", () => (bool)ThoriumMod.Call("GetDownedBoss", "Viscount")))
+                .AddModItemToShop(ThoriumMod, "GraniteBag", 1000000, new Condition("Mods.AlchemistNPCLite.Conditions.Thorium.GraniteEnergyStorm", () => (bool)ThoriumMod.Call("GetDownedBoss", "GraniteEnergyStorm")))
+                .AddModItemToShop(ThoriumMod, "HeroBag", 1000000, new Condition("Mods.ThoriumMod.Conditions.DownedBuriedChampion", () => (bool)ThoriumMod.Call("GetDownedBoss", "BuriedChampion")))
+                .AddModItemToShop(ThoriumMod, "ScouterBag", 1250000, new Condition("Mods.ThoriumMod.Conditions.DownedStarScouter", () => (bool)ThoriumMod.Call("GetDownedBoss", "StarScouter")))
+                .AddModItemToShop(ThoriumMod, "BoreanBag", 1500000, new Condition("Mods.ThoriumMod.Conditions.BoreanStrider", () => (bool)ThoriumMod.Call("GetDownedBoss", "BoreanStrider")))
+                .AddModItemToShop(ThoriumMod, "BeholderBag", 2000000, new Condition("Mods.ThoriumMod.Conditions.DownedFallenBeholder", () => (bool)ThoriumMod.Call("GetDownedBoss", "FallenBeholder")))
+                .AddModItemToShop(ThoriumMod, "LichBag", 3000000, new Condition("Mods.ThoriumMod.Conditions.DownedLich", () => (bool)ThoriumMod.Call("GetDownedBoss", "Lich")))
+                .AddModItemToShop(ThoriumMod, "AbyssionBag", 3500000, new Condition("Mods.ThoriumMod.Conditions.DownedForgottenOne", () => (bool)ThoriumMod.Call("GetDownedBoss", "ForgottenOne")))
+                .AddModItemToShop(ThoriumMod, "RagBag", 5000000, new Condition("Mods.AlchemistNPCLite.Conditions.Thorium.ThePrimordials", () => (bool)ThoriumMod.Call("GetDownedBoss", "ThePrimordials")))
             #endregion
             #region AAMod
-            .AddModItemToShop(AAMod, "GripsTreasureBag", Item.buyPrice(0,8,0,0),() => AADown.Grips)
-            .AddModItemToShop(AAMod, "ToadTreasureBag", Item.buyPrice(2,50,0,0), () => AADown.Toad)
-            .AddModItemToShop(AAMod, "MonarchTreasureBag", Item.buyPrice(4,0,0,0), () => AADown.Monarch)
+            .AddModItemToShop(AAMod, "GripsTreasureBag", Item.buyPrice(0,8,0,0),new Condition("Mods.AlchemistNPCLite.Conditions.AAMod.Grips",() => AADown.Grips))
+            .AddModItemToShop(AAMod, "ToadTreasureBag", Item.buyPrice(2,50,0,0), new Condition("Mods.AlchemistNPCLite.Conditions.AAMod.Toad", () => AADown.Toad))
+            .AddModItemToShop(AAMod, "MonarchTreasureBag", Item.buyPrice(4,0,0,0), new Condition("Mods.AlchemistNPCLite.Conditions.AAMod.Monarch", () => AADown.Monarch))
             #endregion
                 ;
             shop.Register();
@@ -1154,18 +1154,18 @@ namespace AlchemistNPCLite.NPCs
             #region Bags 3 Shop - Redemption
             shop = new NPCShop(Type, Bags3Shop)
                 //.addModItemToShop(Redemption, "KingChickenBag", 150000, () => Operator.RedemptionDowned.ReDownedChicken)
-                .AddModItemToShop(Redemption, "ThornBag", 250000, () => RedemptionDowned.Thorn)
-                .AddModItemToShop(Redemption, "KeeperBag", 350000, () => RedemptionDowned.Keeper)
+                .AddModItemToShop(Redemption, "ThornBag", 250000, new Condition("Mods.Redemption.Conditions.DownedThorn", () => RedemptionDowned.Thorn))
+                .AddModItemToShop(Redemption, "KeeperBag", 350000, new Condition("Mods.Redemption.Conditions.DownedKeeper", () => RedemptionDowned.Keeper))
                 //.addModItemToShop(Redemption, "XenomiteCrystalBag", 500000, () => RedemptionDowned.ReDownedCrystal)
                 //.addModItemToShop(Redemption, "InfectedEyeBag", 1000000, () => RedemptionDowned.ReDownedIEye)
-                .AddModItemToShop(Redemption, "SoIBag", 1000000, () => RedemptionDowned.SeedOfInfection)
-                .AddModItemToShop(Redemption, "SlayerBag", 1500000, () => RedemptionDowned.KingSlayer)
-                .AddModItemToShop(Redemption, "OmegaGigaporaBag", 3000000, () => RedemptionDowned.OmegaGigapora)
-                .AddModItemToShop(Redemption, "OmegaOblitBag", 5000000, () => RedemptionDowned.Obliterator)
-                .AddModItemToShop(Redemption, "PZBag", 6000000, () => RedemptionDowned.PatientZero)
-                .AddModItemToShop(Redemption, "UkkoBag", 6000000, () => RedemptionDowned.DeityDuo)
-                .AddModItemToShop(Redemption, "AkkaBag", 6000000, () => RedemptionDowned.DeityDuo)
-                .AddModItemToShop(Redemption, "NebBag", 10000000, () => RedemptionDowned.Nebuleus)
+                .AddModItemToShop(Redemption, "SoIBag", 1000000, new Condition("Mods.Redemption.Conditions.DownedSeed", () => RedemptionDowned.SeedOfInfection))
+                .AddModItemToShop(Redemption, "SlayerBag", 1500000, new Condition("Mods.Redemption.Conditions.DownedSlayer", () => RedemptionDowned.KingSlayer))
+                .AddModItemToShop(Redemption, "OmegaGigaporaBag", 3000000, new Condition("Mods.Redemption.Conditions.DownedOmega2", () => RedemptionDowned.OmegaGigapora))
+                .AddModItemToShop(Redemption,  "OmegaOblitBag", 5000000, new Condition("Mods.Redemption.Conditions.DownedOmega3", () => RedemptionDowned.Obliterator))
+                .AddModItemToShop(Redemption, "PZBag", 6000000, new Condition("Mods.Redemption.Conditions.DownedPZ", () => RedemptionDowned.PatientZero))
+                .AddModItemToShop(Redemption, "UkkoBag", 6000000, new Condition("Mods.Redemption.Conditions.DownedADD", () => RedemptionDowned.DeityDuo))
+                .AddModItemToShop(Redemption, "AkkaBag", 6000000, new Condition("Mods.Redemption.Conditions.DownedADD", () => RedemptionDowned.DeityDuo))
+                .AddModItemToShop(Redemption, "NebBag", 10000000, new Condition("Mods.Redemption.Conditions.DownedNebuleus", () => RedemptionDowned.Nebuleus))
                 ;
             shop.Register();
             #endregion

@@ -28,17 +28,6 @@ namespace AlchemistNPCLite.Utilities
             }
             return shop;
         }
-        public static NPCShop AddModItemToShop(this NPCShop shop, Mod mod, string itemName, int price, Func<bool> predicate)
-        {
-            if (mod != null)
-            {
-                if (mod.TryFind(itemName, out ModItem currItem))
-                {
-                    shop.Add(new Item(currItem.Type) { shopCustomPrice = price }, new Condition("", predicate));
-                }
-            }
-            return shop;
-        }
         public static NPCShop AddModItemToShop<T>(this NPCShop shop, int price) where T : ModItem
         {
             shop.Add(new Item(ModContent.ItemType<T>()) { shopCustomPrice = price });
@@ -47,11 +36,6 @@ namespace AlchemistNPCLite.Utilities
         public static NPCShop AddModItemToShop<T>(this NPCShop shop, int price, params Condition[] condition) where T : ModItem
         {
             shop.Add(new Item(ModContent.ItemType<T>()) { shopCustomPrice = price }, condition);
-            return shop;
-        }
-        public static NPCShop AddModItemToShop<T>(this NPCShop shop, int price, Func<bool> predicate) where T : ModItem
-        {
-            shop.Add(new Item(ModContent.ItemType<T>()) { shopCustomPrice = price }, new Condition("", predicate));
             return shop;
         }
 
@@ -76,11 +60,11 @@ namespace AlchemistNPCLite.Utilities
         {
             switch (gate)
             {
-                case OperatorShopGate.Hardmode: return new Condition("", () => Main.hardMode);
+                case OperatorShopGate.Hardmode: return Condition.Hardmode;
                 case OperatorShopGate.PostEvilBoss: return Condition.DownedEowOrBoc;
                 case OperatorShopGate.PostSkeletron: return Condition.DownedSkeletron;
                 case OperatorShopGate.PostAnyMechBoss: return Condition.DownedMechBossAny;
-                case OperatorShopGate.PostPlantera: return new Condition("", () => NPC.downedPlantBoss);
+                case OperatorShopGate.PostPlantera: return Condition.DownedPlantera;
                 case OperatorShopGate.PostGolem: return Condition.DownedGolem;
                 case OperatorShopGate.PostMoonLord: return Condition.DownedMoonLord;
                 default: return new Condition("", () => true);
