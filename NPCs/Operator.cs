@@ -1090,7 +1090,7 @@ namespace AlchemistNPCLite.NPCs
             shop.Register();
             #endregion
 
-            #region Bags 1 Shop - Calamity & lots of Affiliated Mods(Catalyst Entropy(added by itself) CalamityHunt)
+            #region Bags 1 Shop - Calamity & lots of Affiliated Mods(Catalyst Entropy(added by itself) CalamityHunt) //Entropy will be rename to Call of Void
             shop = new NPCShop(Type, Bags1Shop)
             #region Calamaity Part
                 .AddModItemToShop(Calamity, "DesertScourgeBag", 375000, () => (bool)Calamity.Call("Downed", "desert scourge"))
