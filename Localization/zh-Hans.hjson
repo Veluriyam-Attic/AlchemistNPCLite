@@ -1622,7 +1622,7 @@ Mods: {
 				}
 
 				Availability: {
-					Label: 售卖时期
+					Label: 售卖条件
 					Tooltip: ""
 				}
 			}
@@ -1670,6 +1670,52 @@ Mods: {
 					Tooltip: ""
 				}
 			}
+		}
+
+		Conditions: {
+			Thorium: {
+				GraniteEnergyStorm: 如果花岗岩流能风暴被击败
+				TheGrandThunderBird: 如果惊雷王鹰被击败
+				ThePrimordials: 如果始生灾灵被击败
+				EnableThorium: 如果Thorium Mod已启用
+			}
+
+			Vanilla: {
+				IceGolem: 如果冰雪巨人被击败
+				SandElemental: 如果沙尘精被击败
+			}
+
+			Calamity: {
+				DOGPumpking: 如果南瓜王被击败时，神明吞噬者已被击败
+				DOGIceQueen: 如果冰雪女王被击败时，神明吞噬者已被击败
+				DOGMothron: 如果蛾怪被击败时，神明吞噬者已被击败
+				PerfsOrHM: 如果腐巢意志或血肉宿主已被击败
+				CryoOrPlantera: 如果极地之灵或世纪之花已被击败
+				ASOrPlantera: 如果渊海灾虫或世纪之花已被击败
+				BrimOrPlantera: 如果硫磺火元素或世纪之花已被击败
+				EnableCalamity: 如果Calamity Mod已启用
+			}
+
+			Fargo: {
+				Trojan: 如果特洛伊松鼠已被击败
+				Cursed: 如果咒缚灵棺已被击败
+				Devi: 如果黛薇安已被击败
+				Banished: 如果放逐遗爵已被击败
+				LifeLight: 如果飘渺游光已被击败
+				Cosmos: 如果厄里达诺斯，宇宙英灵已被击败
+				Abom: 如果憎恶已被击败
+				Mutant: 如果突变体已被击败
+			}
+
+			CalamityHunt.Goozma: 如果古泽玛已被击败
+
+			AAMod: {
+				Grips: 如果混沌之握已被击败
+				Toad: 如果松露蟾蜍已被击败
+				Monarch: 如果蘑菇君王已被击败
+			}
+
+			Spirit.EnableSpirit: 如果Spirit Classic已启用
 		}
 	}
 }

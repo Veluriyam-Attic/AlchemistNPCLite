@@ -1579,5 +1579,51 @@ Mods: {
 				}
 			}
 		}
+
+		Conditions: {
+			Thorium: {
+				// GraniteEnergyStorm: If Granite Energy Storm has beed defeated
+				// TheGrandThunderBird: If The Grand Thunder Bird has beed defeated
+				// ThePrimordials: If The Primordials has beed defeated
+				// EnableThorium: If Thorium Mod has beed enabled
+			}
+
+			Vanilla: {
+				// IceGolem: If Ice Golem has beed defeated
+				// SandElemental: If Sand Elemental has beed defeated
+			}
+
+			Calamity: {
+				// DOGPumpking: If Pumpking was defeated,The Devourer of Gods had already been defeated
+				// DOGIceQueen: If Ice Queen was defeated,The Devourer of Gods had already been defeated
+				// DOGMothron: If Mothron was defeated,The Devourer of Gods had already been defeated
+				// PerfsOrHM: If The Hive Mind or The Perforators has beed defeated
+				// EnableCalamity: If Calamity Mod has beed enabled
+				// CryoOrPlantera: Mods.AlchemistNPCLite.Conditions.Calamity.CryoOrPlantera
+				// ASOrPlantera: Mods.AlchemistNPCLite.Conditions.Calamity.ASOrPlantera
+				// BrimOrPlantera: Mods.AlchemistNPCLite.Conditions.Calamity.BrimOrPlantera
+			}
+
+			Fargo: {
+				// Trojan: If Trojan Squirrel has beed defeated
+				// Cursed: If Cursed Coffin has beed defeated
+				// Devi: If Deviantt has beed defeated
+				// Banished: If Banished Baron has beed defeated
+				// LifeLight: If Lifelight has beed defeated
+				// Cosmos: If Eridanus, Champion of Cosmos has beed defeated
+				// Abom: If Abominationn has beed defeated
+				// Mutant: If Mutant has beed defeated
+			}
+
+			// CalamityHunt.Goozma: If Goozma has beed defeated
+
+			AAMod: {
+				// Grips: If Grips of Chaos has beed defeated
+				// Toad: If Truffle Toad has beed defeated
+				// Monarch: If Mushroom Monarch has beed defeated
+			}
+
+			// Spirit.EnableSpirit: If Spirit Classic has beed enabled
+		}
 	}
 }
