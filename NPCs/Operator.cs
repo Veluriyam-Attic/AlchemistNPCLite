@@ -994,7 +994,7 @@ namespace AlchemistNPCLite.NPCs
                 .AddModItemToShop(Calamity, "Phantoplasm", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedPolter", () => (bool)Calamity.Call("Downed", "polterghast")))
                 .AddModItemToShop(Calamity, "NightmareFuel", 120000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.DOGPumpking", () => AlchemistNPCLiteWorld.downedDOGPumpking))
                 .AddModItemToShop(Calamity, "EndothermicEnergy", 120000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.DOGIceQueen", () => AlchemistNPCLiteWorld.downedDOGIceQueen))
-                .AddModItemToShop(Calamity, "DarksunFragment", 150000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Vanilla.downedDOGMothron", () => AlchemistNPCLiteWorld.downedDOGMothron))
+                .AddModItemToShop(Calamity, "DarksunFragment", 150000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.downedDOGMothron", () => AlchemistNPCLiteWorld.downedDOGMothron))
             #endregion
             #region Fargo
                 .AddModItemToShop(FargoSouls, "DeviatingEnergy", Item.sellPrice(0, 1, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.FargoSouls.downedDevi", () => FargoDowned.Devi))
@@ -1038,7 +1038,7 @@ namespace AlchemistNPCLite.NPCs
             #region VanillaBagsShop
             shop = new NPCShop(Type, VanillaBagsShop)
                 .Add(new Item(ModContent.ItemType<Items.Notes.InformatingNote>()) { shopCustomPrice = 30000 },
-                    new Condition("", () => !NPC.downedBoss3))
+                    Condition.DownedSkeletron)
                 .Add(new Item(ItemID.KingSlimeBossBag) { shopCustomPrice = 500000 },
                     Condition.DownedSkeletron,Condition.DownedKingSlime,Condition.InExpertMode)
                 .Add(new Item(ItemID.EyeOfCthulhuBossBag) { shopCustomPrice = 700000 },
