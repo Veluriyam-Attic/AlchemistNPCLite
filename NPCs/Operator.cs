@@ -994,13 +994,13 @@ namespace AlchemistNPCLite.NPCs
                 .AddModItemToShop(Calamity, "Phantoplasm", 100000, new Condition("Mods.CalamityMod.Condition.Drops.DownedPolter", () => (bool)Calamity.Call("Downed", "polterghast")))
                 .AddModItemToShop(Calamity, "NightmareFuel", 120000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.DOGPumpking", () => AlchemistNPCLiteWorld.downedDOGPumpking))
                 .AddModItemToShop(Calamity, "EndothermicEnergy", 120000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.DOGIceQueen", () => AlchemistNPCLiteWorld.downedDOGIceQueen))
-                .AddModItemToShop(Calamity, "DarksunFragment", 150000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.downedDOGMothron", () => AlchemistNPCLiteWorld.downedDOGMothron))
+                .AddModItemToShop(Calamity, "DarksunFragment", 150000, new Condition("Mods.CalamityMod.Condition.Drops.DownedDoG", () => (bool)Calamity.Call("Downed", "dog")),new Condition("Mods.AlchemistNPCLite.Conditions.Calamity.DOGMothron", () => AlchemistNPCLiteWorld.downedDOGMothron))
             #endregion
             #region Fargo
-                .AddModItemToShop(FargoSouls, "DeviatingEnergy", Item.sellPrice(0, 1, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.FargoSouls.downedDevi", () => FargoDowned.Devi))
-                .AddModItemToShop(FargoSouls, "Eridanium", Item.sellPrice(0, 8, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.FargoSouls.downedCosmos", () => FargoDowned.Cosmos))
-                .AddModItemToShop(FargoSouls, "AbomEnergy", Item.sellPrice(0, 6, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.FargoSouls.downedAbom", () => FargoDowned.Abom))
-                .AddModItemToShop(FargoSouls, "EternalEnergy", Item.sellPrice(0, 9, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.FargoSouls.downedMutant", () => FargoDowned.Mutant))
+                .AddModItemToShop(FargoSouls, "DeviatingEnergy", Item.sellPrice(0, 1, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Devi", () => FargoDowned.Devi))
+                .AddModItemToShop(FargoSouls, "Eridanium", Item.sellPrice(0, 8, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Cosmos", () => FargoDowned.Cosmos))
+                .AddModItemToShop(FargoSouls, "AbomEnergy", Item.sellPrice(0, 6, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Abom", () => FargoDowned.Abom))
+                .AddModItemToShop(FargoSouls, "EternalEnergy", Item.sellPrice(0, 9, 50, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Fargo.Mutant", () => FargoDowned.Mutant))
             #endregion
             #region Spirit
                 //if (ModLoader.GetMod("SpiritMod") != null)
