@@ -1709,6 +1709,10 @@ Mods: {
 
 			CalamityHunt.Goozma: 如果古泽玛已被击败
 
+			Catalyst: {
+				Astrageldon: 如果末世星史莱姆已被击败
+			}
+
 			AAMod: {
 				Grips: 如果混沌之握已被击败
 				Toad: 如果松露蟾蜍已被击败

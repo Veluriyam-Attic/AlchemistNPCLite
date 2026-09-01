@@ -1030,7 +1030,7 @@ namespace AlchemistNPCLite.NPCs
                 .AddModItemToShop(Atheria, "MemoryFragment", 10000, Condition.DownedMoonLord)
             #endregion
             #region Catalyst
-            .AddModItemToShop(Catalyst, "MetanovaOre", Item.buyPrice(0, 2, 0, 0), new Condition("Mod.AlchemistNPCLite.Conditions.Catalyst.Astrageldon", () => CatalystDown.Astrageldon));
+            .AddModItemToShop(Catalyst, "MetanovaOre", Item.buyPrice(0, 2, 0, 0), new Condition("Mods.AlchemistNPCLite.Conditions.Catalyst.Astrageldon", () => CatalystDown.Astrageldon));
             #endregion
             ShopPaginator.Register(shop); // Gregg: paginate instead of Register() — overflow past 39 no longer dropped
             #endregion
@@ -1111,7 +1111,7 @@ namespace AlchemistNPCLite.NPCs
             #endregion
             #region Affiliated Mod
             .AddModItemToShop(CalamityHunt, "TreasureTrunk", 200000000, new Condition("Mods.AlchemistNPCLite.Conditions.CalamityHunt.Goozma",() => CalamityHuntDown.Goozma)) // The price is as same as Supreme Calamitas's
-            .AddModItemToShop(Catalyst,"AstrageldonBag", 12000000, new Condition("Mod.AlchemistNPCLite.Conditions.Catalyst.Astrageldon", () => CatalystDown.Astrageldon));// The price is as same as MoonLord's
+            .AddModItemToShop(Catalyst,"AstrageldonBag", 12000000, new Condition("Mods.AlchemistNPCLite.Conditions.Catalyst.Astrageldon", () => CatalystDown.Astrageldon));// The price is as same as MoonLord's
                 ;
             shop.Register();
             #endregion

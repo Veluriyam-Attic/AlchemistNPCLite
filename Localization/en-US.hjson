@@ -1625,6 +1625,10 @@ Mods: {
 
 			CalamityHunt.Goozma: If Goozma has beed defeated
 
+			Catalyst: {
+				Astrageldon: If Astrageldon has been defeated
+			}
+
 			AAMod: {
 				Grips: If Grips of Chaos has beed defeated
 				Toad: If Truffle Toad has beed defeated
