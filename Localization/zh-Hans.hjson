@@ -369,11 +369,11 @@ Mods: {
 			}
 
 			BeachTeleporterPotion: {
-				DisplayName: 信标传送药剂
+				DisplayName: 沙滩传送药剂
 				Tooltip:
 					'''
-					将你传送至信标处
-					没有放置信标无法使用
+					将你传送至沙滩
+					方向取决于鼠标按键
 					'''
 			}
 
